@@ -18,13 +18,13 @@ function load(file, cb) {
   file.createReadStream()
       .pipe(dest)
 
-  file.createReadStream()
-      .pipe(fs.createWriteStream(file.name))
-
   child.stdout.pipe(process.stdout, { end: false })
   child.stderr.pipe(process.stderr, { end: false })
 
-  child.on('exit', cb)
+  child.on('exit', function() {
+    console.log('completed', file.name)
+    cb()
+  })
 }
 
 

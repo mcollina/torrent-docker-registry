@@ -1,10 +1,10 @@
 {
-  "name": "achab",
+  "name": "dolphin",
   "version": "0.0.1",
-  "description": "A docker registry system that works on bittorrent",
+  "description": "Docker pull via Bittorrent, comes with a custom registry",
   "main": "achab.js",
   "bin": {
-    "achab": "achab.js"
+    "dolphin": "dolphin.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/mcollina/achab",
   "dependencies": {
-    "async": "^0.9.0",
     "bittorrent-tracker": "^2.8.2",
     "commist": "^0.2.0",
     "create-torrent": "^3.3.0",

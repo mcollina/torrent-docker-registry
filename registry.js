@@ -14,7 +14,7 @@ function registry(opts) {
   var registryPort    = opts.registryPort || opts.r || 8042
   var ip              = opts.ip || opts.i || '127.0.0.1'
   var torrentPort     = opts.torrentPort || opts.e || 8881
-  var root            = opts.path || opts.p || path.join(process.cwd(), 'achab')
+  var root            = opts.path || opts.p || path.join(process.cwd(), 'dolphin')
   var torrents        = path.join(root, 'torrents')
 
   mkdirp.sync(root)

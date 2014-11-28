@@ -18,7 +18,9 @@ function cli(args) {
         console.log(err)
         process.exit(1)
       }
-      process.exit(0)
+      if (!opts.keep) {
+        process.exit(0)
+      }
     })
   })
 
