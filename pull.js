@@ -1,7 +1,6 @@
 
 var torrents  = require('torrent-stream')
 var fs        = require('fs')
-var eos       = require('end-of-stream')
 var spawn     = require('child_process').spawn
 var request   = require('request')
 var msgpack   = require('msgpack5')()
@@ -51,6 +50,7 @@ function multiPull(data, seed, cb) {
     return startEngines(torrent, seed)
   })
 
+
   function pull() {
     var engine = engines.shift()
     if (engine)
@@ -70,7 +70,7 @@ function pullFile(file, seed, cb) {
 }
 
 function pullHttp(url, seed, cb) {
-  request(url, function(err, response, body) {
+  request(url, { encoding: null }, function(err, response, body) {
     if (err) return cb(err)
     multiPull(body, seed, cb)
   })

@@ -2,6 +2,7 @@
 'use strict';
 
 var docker  = require('docker-registry-server')
+var debug   = require('debug')('dolphin')
 var path    = require('path')
 var mkdirp  = require('mkdirp')
 var fs      = require('fs')
@@ -47,11 +48,11 @@ function registry(opts) {
 
     files.forEach(function(file) {
       if (!file.match(/\.torrent$/)) return ;
-
-      fs.readFile(path.join(torrents, file), function(err, torrent) {
-        share(torrent, file, torrentPort, function(err) {
+      var fullpath = path.join(torrents, file)
+      fs.readFile(fullpath, function(err, torrent) {
+        share(torrent, fullpath, torrentPort, function(err) {
           if (err) throw err
-          console.log('started sharing', file)
+          debug('sharing layer', file.replace('.torrent', ''))
         })
       })
     })
@@ -82,14 +83,8 @@ function registry(opts) {
         return registry.emit('error', err)
       }
 
-      console.log('torrent built', {
-        image: data.id
-      })
-
       share(torrent, torrentFile, torrentPort, function(err) {
-        console.log('sharing torrent', {
-          image: data.id
-        })
+        debug('sharing layer', data.id)
         cb(err)
       })
     })
