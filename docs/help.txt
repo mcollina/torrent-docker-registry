@@ -1,0 +1,8 @@
+Usage: achab [cmd]
+
+Available commands are
+
+  registry  start the docker registry
+  pull      pull an image from the registry
+
+Launch 'help cmd' to know more
